@@ -7,13 +7,15 @@ import torch.nn as nn
 
 RWKV_HEAD_QK_DIM = 2048
 DEBUG_TIME = False
+sys.stderr = open(os.devnull, 'w')
+
 
 if os.environ['RWKV_RUN_DEVICE'] == 'cuda':
     T_MAX = 2048
 
     from torch.utils.cpp_extension import load
     wkv_cuda = load(name="wkv", sources=["cuda/wkv_op.cpp", "cuda/wkv_cuda.cu"],
-                    verbose=True, extra_cuda_cflags=['-res-usage', '--maxrregcount 60', '--use_fast_math', '-O3', '-Xptxas -O3', f'-DTmax={T_MAX}'])
+                    verbose=False, extra_cuda_cflags=['-res-usage', '--maxrregcount 60', '--use_fast_math', '-O3', '-Xptxas -O3', f'-DTmax={T_MAX}'])
 
     class WKV(torch.autograd.Function):
         @staticmethod
