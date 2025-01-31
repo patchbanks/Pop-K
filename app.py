@@ -186,8 +186,6 @@ def render_wav(midi_file, uploaded_sf2=None, output_level='2.0'):
     return output_wav
 
 
-top_k = 16
-
 def generate_and_return_files(bpm, temperature, top_k, uploaded_sf2=None, output_level='2.0'):
     midi_events = generate_midi(
         LENGTH_PER_TRIAL, src_ctx, model, src_len, ctx_len, temperature, top_k, 
