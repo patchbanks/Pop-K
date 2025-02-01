@@ -4,6 +4,7 @@ import torch
 import math, os
 from torch.nn import functional as F
 import torch.nn as nn
+import sys
 
 RWKV_HEAD_QK_DIM = 2048
 DEBUG_TIME = False
