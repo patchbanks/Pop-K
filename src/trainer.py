@@ -7,7 +7,7 @@ import math
 import gc
 import os
 
-USE_WANDB = 1
+USE_WANDB = 0
 
 project = "POPK"
 name = "POPK"
@@ -158,8 +158,10 @@ class Trainer(Fabric):
             if self.cuda_id == 0:
                 log_file.write(f'{epoch+1+self.EPOCH_BEGIN} {self.avg_loss:.6f} {math.exp(self.avg_loss):.4f} {self.lr:.8f} {datetime.datetime.now()} {epoch+1} \n')
                 log_file.flush()
-            
+
                 if (self.config.epoch_save_frequency > 0 and epoch % self.config.epoch_save_frequency == 0) or (epoch == config.max_epochs - 1):
                     raw_model = self.model.module if hasattr(self.model, "module") else self.model
-                    torch.save(raw_model.state_dict(), self.config.epoch_save_path + '.pth')
+                    save_path = f"{self.config.epoch_save_path}{epoch+1+self.EPOCH_BEGIN}.pth"
+                    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+                    torch.save(raw_model.state_dict(), save_path)
                     print("model saved")
