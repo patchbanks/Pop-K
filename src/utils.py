@@ -21,6 +21,7 @@ def decode(encoded, itos):
 
 class Dataset:
     def __init__(self, data, ctx_len, epoch_length_fixed, batch_size):
+        print('tokenizing data...')
         self.ctx_len = ctx_len
         self.epoch_length_fixed = epoch_length_fixed
         self.batch_size = batch_size
