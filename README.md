@@ -16,3 +16,11 @@ Use `colab_run.ipynb` to run the model with Gradio or generate MIDI files in bul
 ## Examples
 
 Preview MIDI outputs in data/midi_output_examples.zip.
+
+## Dataset
+
+The Pop-K MIDI Dataset is closed-source and not publicly available for direct download. However, more information about the dataset, including details on access and usage, can be found at the following link:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14791511.svg)](https://doi.org/10.5281/zenodo.14791511)
+
+
